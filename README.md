@@ -1,2 +1,4 @@
-# dotfiles
-My preferred configuration files.
+# Awesome dotfiles
+Prefered configurations for:
+- Vim
+- tmux

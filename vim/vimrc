@@ -1,0 +1,93 @@
+"""""""""""""""""""""""""""
+" Common how-to's
+"""""""""""""""""""""""""""
+"  * Convert spaces to tabs
+"  --------------- 
+" |1| :set tabstop=2     "To match the indentation of the file
+" |2| :set noexpandtab   "Use tab characters for new tabs
+" |3| :%retab!           "Reindent all existing tabs 
+" 
+" SOURCE: https://stackoverflow.com/a/9105889/5969548
+"
+"  * Convert tabs to spaces
+"  --------------- 
+" |1| :set tabstop=2     "To match the indentation of the file
+" |2| :set expandtab     "Use spaces characters for new tabs
+" |3| :retab             "Reindent all existing tabs
+" 
+" * Select text, gotta go to visual mode
+"  --------------- 
+"    v     : Visual mode
+"    V     : Selects whole line
+"  SHIFT-V : Visual mode per line
+"
+"""""""""""""""""""""""""""
+" About some commands in case I forget...
+"""""""""""""""""""""""""""
+" <CR>  : Is like pressing Enter so it gets executed
+" <C-U> : Remove all characters between the cursor position and the
+"         beginning of the line. 
+"         https://vi.stackexchange.com/a/9752/19783
+" <C-o> : Run a single normal mode command from insert mode
+"         https://vi.stackexchange.com/a/13165/19783
+"
+"
+"""""""""""""""""""""""""""
+" Resourses
+"""""""""""""""""""""""""""
+"
+" Mapping on Vim: https://learnvimscriptthehardway.stevelosh.com/chapters/05.html
+"                 https://vim.fandom.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
+" Copy/Paste    : https://linuxize.com/post/how-to-copy-cut-paste-in-vim/
+
+""""""""""""""""""""""""
+" Line numbering / Ruler 
+""""""""""""""""""""""""
+" Sets hybrid relative number when in normal mode
+" but go back to absolute numbers when in insert mode
+set number relativenumber
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+:augroup END
+
+"set backspace=indent,eol,start "Let backspace delete over line
+
+""""""""""""""""""""""""
+" Indentation
+""""""""""""""""""""""""
+" Note that smartindent seems to be intended for C/C-like languages
+" thus I am commenting it
+"set smartindent "Allow vim to best-effort guess the indentation
+set autoindent "Enable auto indentation of lines
+set tabstop=2 "Display the tab as N-spaces wide
+set shiftwidth=2 "Indent displayed size when pressing <<,>>,= to indent in normal mode
+set expandtab "Indent using spaces instead of tabs
+" Activate/deactivate spaces/tabs visualization in normal mode
+nnoremap <F2> :<C-U>setlocal lcs=tab:>-,eol:$ list! list? <CR>
+" Activate/deactivate spaces/tabs visualization in insert mode
+inoremap <F2> <C-o>:set list!<CR>
+
+
+"""""""""""""""""""""""""
+" Copy to clipboard
+"""""""""""""""""""""""""
+"set clipboard="unnamed"
+
+"""""""""""""""""""""""""
+" Paste mode to disallow auto-indent
+"""""""""""""""""""""""""
+" When copying from other application into Vim (terminal), the pasted text
+" is inserted into the keyboard buffer, so Vim thinks the text has been typed
+" by the user. After each line ending, Vim may move the cursor so the next
+" line statrs with the same indent as the last one.
+"
+" TODO: Check the following link for automatic paste mode
+"       https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
+" TODO: Check paste mode in normal mode
+"""""""""""""""""""""""""
+"nnoremap <F3> :set invpaste paste?<CR> "Invert paste option in normal mode
+set pastetoggle=<F3> "Enables paste mode in insert mode
+"set showmode "Show that paste is turned on
+
