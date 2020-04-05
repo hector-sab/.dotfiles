@@ -6,6 +6,27 @@
 " |1| :set tabstop=2     "To match the indentation of the file
 " |2| :set noexpandtab   "Use tab characters for new tabs
 " |3| :%retab!           "Reindent all existing tabs 
+" Common how-to's
+"""""""""""""""""""""""""""
+"  * Convert spaces to tabs
+"  --------------- 
+" |1| :set tabstop=2     "To match the indentation of the file
+" |2| :set noexpandtab   "Use tab characters for new tabs
+" |3| :%retab!           "Reindent all existing tabs 
+" Common how-to's
+"""""""""""""""""""""""""""
+"  * Convert spaces to tabs
+"  --------------- 
+" |1| :set tabstop=2     "To match the indentation of the file
+" |2| :set noexpandtab   "Use tab characters for new tabs
+" |3| :%retab!           "Reindent all existing tabs 
+" Common how-to's
+"""""""""""""""""""""""""""
+"  * Convert spaces to tabs
+"  --------------- 
+" |1| :set tabstop=2     "To match the indentation of the file
+" |2| :set noexpandtab   "Use tab characters for new tabs
+" |3| :%retab!           "Reindent all existing tabs 
 " 
 " SOURCE: https://stackoverflow.com/a/9105889/5969548
 "
@@ -31,7 +52,6 @@
 " <C-o> : Run a single normal mode command from insert mode
 "         https://vi.stackexchange.com/a/13165/19783
 "
-"
 """""""""""""""""""""""""""
 " Resourses
 """""""""""""""""""""""""""
@@ -39,6 +59,16 @@
 " Mapping on Vim: https://learnvimscriptthehardway.stevelosh.com/chapters/05.html
 "                 https://vim.fandom.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 " Copy/Paste    : https://linuxize.com/post/how-to-copy-cut-paste-in-vim/
+"
+"
+"""""""""""""""""""""""""""
+" Notes
+"""""""""""""""""""""""""""
+" - Official repo from Ubuntu may have not been compiled to have +clipboard (allows copy
+"   from-to vim). An alternative is vim-gtk3
+" - Linux has two clipboards, thus we may need to sync them. If using KDE, use klipper
+"   (built-in) to sync them. However, anything you select will be copied into the clipboard
+"   if synchronized
 
 """"""""""""""""""""""""
 " Line numbering / Ruler 
@@ -54,13 +84,21 @@ set number relativenumber
 
 "set backspace=indent,eol,start "Let backspace delete over line
 
+
+"""""""""""""""""""""""""""
+" Allow copy to clipboard
+"""""""""""""""""""""""""""
+"Allows copy from other apps. Works when clipboards are synchronized
+set clipboard=unnamed 
+"Allows copy to other apps
+vnoremap y "+y 
+
 """"""""""""""""""""""""
 " Indentation
 """"""""""""""""""""""""
 " Note that smartindent seems to be intended for C/C-like languages
-" thus I am commenting it
-"set smartindent "Allow vim to best-effort guess the indentation
 set autoindent "Enable auto indentation of lines
+"set smartindent "Allow vim to best-effort guess the indentation
 set tabstop=2 "Display the tab as N-spaces wide
 set shiftwidth=2 "Indent displayed size when pressing <<,>>,= to indent in normal mode
 set expandtab "Indent using spaces instead of tabs
@@ -68,7 +106,6 @@ set expandtab "Indent using spaces instead of tabs
 nnoremap <F2> :<C-U>setlocal lcs=tab:>-,eol:$ list! list? <CR>
 " Activate/deactivate spaces/tabs visualization in insert mode
 inoremap <F2> <C-o>:set list!<CR>
-
 
 """""""""""""""""""""""""
 " Copy to clipboard
