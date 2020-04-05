@@ -5,17 +5,17 @@
 """""""""""""""""""""""""""
 "  * Convert spaces to tabs
 "  --------------- 
-" |1| :set tabstop=2     "To match the indentation of the file
-" |2| :set noexpandtab   "Use tab characters for new tabs
-" |3| :%retab!           "Reindent all existing tabs 
+"  |1| :set tabstop=2     "To match the indentation of the file
+"  |2| :set noexpandtab   "Use tab characters for new tabs
+"  |3| :%retab!           "Reindent all existing tabs 
 " 
 " SOURCE: https://stackoverflow.com/a/9105889/5969548
 "
 "  * Convert tabs to spaces
 "  --------------- 
-" |1| :set tabstop=2     "To match the indentation of the file
-" |2| :set expandtab     "Use spaces characters for new tabs
-" |3| :retab             "Reindent all existing tabs
+"  |1| :set tabstop=2     "To match the indentation of the file
+"  |2| :set expandtab     "Use spaces characters for new tabs
+"  |3| :retab             "Reindent all existing tabs
 " 
 " * Select text, gotta go to visual mode
 "  --------------- 
@@ -24,18 +24,27 @@
 "
 " * Comment multiple lines
 "  --------------
-" |1| CTRL-V              "Enter Visual-Block mode
-" |2| Move up-down        "Select all desired lines init
-" |3| SHIFT-i             "Enter Insert mode
-" |4| Write #, //, etc    "Write correct comment character
-" |5| ESC                 "Exit mode and apply to all selected lines
+"  |1| CTRL-V              "Enter Visual-Block mode
+"  |2| Move up-down        "Select all desired lines init
+"  |3| SHIFT-i             "Enter Insert mode
+"  |4| Write #, //, etc    "Write correct comment character
+"  |5| ESC                 "Exit mode and apply to all selected lines
 "
 " * Autocomplete
 "  -------------
 "  i_CTRL-p               "Autocomplete <<< 
 "  i_CTRL-n               "Autocomplete
 "  i_CTRL-x_CTRL-n        "Autocomplete using the words in the current file
+"
 "  NOTE: For Vim help try `:h ins-completion`
+"
+" * Undo/Redo
+"  ------------
+"    u        "Undo
+"  CTRL-r     "Redo
+"
+"  NOTE: They must be in normal mode
+"  SOURE: https://vim.fandom.com/wiki/Undo_and_Redo#
 "
 "
 "
