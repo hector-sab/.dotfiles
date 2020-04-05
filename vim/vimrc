@@ -1,26 +1,7 @@
 """""""""""""""""""""""""""
+"""""""""""""""""""""""""""
 " Common how-to's
 """""""""""""""""""""""""""
-"  * Convert spaces to tabs
-"  --------------- 
-" |1| :set tabstop=2     "To match the indentation of the file
-" |2| :set noexpandtab   "Use tab characters for new tabs
-" |3| :%retab!           "Reindent all existing tabs 
-" Common how-to's
-"""""""""""""""""""""""""""
-"  * Convert spaces to tabs
-"  --------------- 
-" |1| :set tabstop=2     "To match the indentation of the file
-" |2| :set noexpandtab   "Use tab characters for new tabs
-" |3| :%retab!           "Reindent all existing tabs 
-" Common how-to's
-"""""""""""""""""""""""""""
-"  * Convert spaces to tabs
-"  --------------- 
-" |1| :set tabstop=2     "To match the indentation of the file
-" |2| :set noexpandtab   "Use tab characters for new tabs
-" |3| :%retab!           "Reindent all existing tabs 
-" Common how-to's
 """""""""""""""""""""""""""
 "  * Convert spaces to tabs
 "  --------------- 
@@ -39,11 +20,29 @@
 " * Select text, gotta go to visual mode
 "  --------------- 
 "    v     : Visual mode
-"    V     : Selects whole line
 "  SHIFT-V : Visual mode per line
 "
+" * Comment multiple lines
+"  --------------
+" |1| CTRL-V              "Enter Visual-Block mode
+" |2| Move up-down        "Select all desired lines init
+" |3| SHIFT-i             "Enter Insert mode
+" |4| Write #, //, etc    "Write correct comment character
+" |5| ESC                 "Exit mode and apply to all selected lines
+"
+" * Autocomplete
+"  -------------
+"  i_CTRL-p               "Autocomplete <<< 
+"  i_CTRL-n               "Autocomplete
+"  i_CTRL-x_CTRL-n        "Autocomplete using the words in the current file
+"  NOTE: For Vim help try `:h ins-completion`
+"
+"
+"
+"""""""""""""""""""""""""""
 """""""""""""""""""""""""""
 " About some commands in case I forget...
+"""""""""""""""""""""""""""
 """""""""""""""""""""""""""
 " <CR>  : Is like pressing Enter so it gets executed
 " <C-U> : Remove all characters between the cursor position and the
@@ -52,8 +51,12 @@
 " <C-o> : Run a single normal mode command from insert mode
 "         https://vi.stackexchange.com/a/13165/19783
 "
+"
+"
+"""""""""""""""""""""""""""
 """""""""""""""""""""""""""
 " Resourses
+"""""""""""""""""""""""""""
 """""""""""""""""""""""""""
 "
 " Mapping on Vim: https://learnvimscriptthehardway.stevelosh.com/chapters/05.html
@@ -61,14 +64,21 @@
 " Copy/Paste    : https://linuxize.com/post/how-to-copy-cut-paste-in-vim/
 "
 "
+"
+"
+"""""""""""""""""""""""""""
 """""""""""""""""""""""""""
 " Notes
+"""""""""""""""""""""""""""
 """""""""""""""""""""""""""
 " - Official repo from Ubuntu may have not been compiled to have +clipboard (allows copy
 "   from-to vim). An alternative is vim-gtk3
 " - Linux has two clipboards, thus we may need to sync them. If using KDE, use klipper
 "   (built-in) to sync them. However, anything you select will be copied into the clipboard
 "   if synchronized
+
+
+
 
 """"""""""""""""""""""""
 " Line numbering / Ruler 
