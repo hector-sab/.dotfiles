@@ -108,9 +108,10 @@ set number relativenumber
 " Allow copy to clipboard
 """""""""""""""""""""""""""
 "Allows copy from other apps. Works when clipboards are synchronized
-set clipboard=unnamed 
+"set clipboard=unnamed 
 "Allows copy to other apps
-vnoremap y "+y 
+"vnoremap y "+y 
+set clipboard+=unnamedplus
 
 """"""""""""""""""""""""
 " Indentation
