@@ -248,6 +248,10 @@ Plug 'kien/ctrlp.vim'
 
 " Autocompletion. 
 " Note: If using jedi for python, make sure the latest version is installed
+" NOTE: Check python interpreter being used
+"       :CocCommand python.setInterpreter
+" TODO: Check its github page and change jedi to a Language Server
+"       https://github.com/neoclide/coc-python
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Show undo tree in lateral pane
@@ -327,3 +331,12 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Allows COC <TAB> to work as tab when it is not intending to autocomplete
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
