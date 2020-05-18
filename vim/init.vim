@@ -295,3 +295,10 @@ nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
 " TODO: What does it do?
 nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
 
+" Shortcuts for vim-fugitive
+" Git Status
+nnoremap <leader>gs :Gstatus<CR>
+" In merge conflict. Select the commit from the left
+nnoremap <leader>gh :diffget //2<CR>
+" In merge conflict. Select the commit from the right
+nnoremap <leader>gh :diffget //3<CR>
