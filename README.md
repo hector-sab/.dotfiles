@@ -4,7 +4,7 @@ Prefered configurations for:
 - tmux
 
 ```
-source install.sh
+./install.sh
 ```
 
 ## VIM
