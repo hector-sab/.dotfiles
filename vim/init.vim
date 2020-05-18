@@ -244,9 +244,11 @@ Plug 'kien/ctrlp.vim'
 "       be used.
 " Note3: If NOTE2 does not work. try checking out 
 "        github.com/ycm-core/YouCompleteMe#working-with-virtual-environments
-Plug 'ycm-core/YouCompleteMe'
+"Plug 'ycm-core/YouCompleteMe'
 
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Autocompletion. 
+" Note: If using jedi for python, make sure the latest version is installed
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Show undo tree in lateral pane
 Plug 'mbbill/undotree'
@@ -288,12 +290,12 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <leader>ps :Rg<SPACE>
 
 
-" Go to definition.
+" Go to definition for YCM
 " NOTE: `CTRL + o` and `CTRL + i` are used to go back and forth.
 "       Go through `vimtutor` for more info.
-nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
+"nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
 " TODO: What does it do?
-nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
+"nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
 
 " Shortcuts for vim-fugitive
 " Git Status
@@ -302,3 +304,26 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gh :diffget //2<CR>
 " In merge conflict. Select the commit from the right
 nnoremap <leader>gh :diffget //3<CR>
+
+
+
+" For JSONc. Colors correctly the comments
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" For Coc
+" Give more space for displaying messages. Dark bar below the nvim bar.
+set cmdheight=2
+" Debug
+"let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
+
+" Creates pair of parentesis etc..
+let g:coc_global_extensions = ['coc-pairs', 'coc-json', 'coc-python']
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
