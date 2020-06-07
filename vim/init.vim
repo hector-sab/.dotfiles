@@ -106,7 +106,7 @@ set expandtab
 "       required by smartindent
 set autoindent
 " TODO: Check if it works well with python
-set smartindent
+"set smartindent
 
 " Numerates the lines, and adds hybrid numeration
 set nu rnu
@@ -158,6 +158,10 @@ nnoremap <F2> :<C-U>setlocal lcs=tab:>-,eol:$ list! list? <CR>
 " Activate/deactivate spaces/tabs visualization in insert mode
 inoremap <F2> <C-o>:set list!<CR>
 
+" Allows pasting previous selection multiple times. For old behavior try 
+" SHIFT + p
+vnoremap p pgvy
+
 " Allow copying from vim registry to system clipboard
 set clipboard+=unnamedplus
 
@@ -197,26 +201,45 @@ let g:netrw_winsize = 30
 "nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>pv :Lex<CR>
 
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
 """"""""""""""""""""
 " Plugins
 """""""""""""""""""""
 " Currently using vim-plug. For installation instructions take a look at
-" https://github.com/junegunn/vim-lug
+" https://github.com/junegunn/vim-plug
 "
 " NOTE: Vim plugins is: '~/.vim/plugged'
 "       Nvim plugins dir is: stdpath('data') . '/plugged' 
 "           also known as ~/.local/share/nvim/plugged
 call plug#begin(stdpath('data') . '/plugged')
 " Theme. Look below for the color scheme
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 
 " Use ripgrep
 " NOTE: It requires ripgrep in your system.
 "       sudo apt install ripgrep
 Plug 'jremmen/vim-ripgrep'
 
-" Used for git  
+" Used for git. I prefer sublime merge or vanilla git tbh. 
 Plug 'tpope/vim-fugitive'
+" Used for showing lines changed from the branch
+Plug 'mhinz/vim-signify'
 
 " Shows in which vim branch we are
 Plug 'vim-airline/vim-airline'
@@ -248,6 +271,7 @@ Plug 'kien/ctrlp.vim'
 
 " Autocompletion. 
 " Note: If using jedi for python, make sure the latest version is installed
+"       using `pip install -U jedi`
 " NOTE: Check python interpreter being used
 "       :CocCommand python.setInterpreter
 " TODO: Check its github page and change jedi to a Language Server
@@ -265,15 +289,19 @@ call plug#end()
 """""""""""""""""""""
 
 " Set color scheme
+" Allows vim to show correcto colors somehow
+set termguicolors
 let g:gruvbox_italic=1
 colorscheme gruvbox
 set background=dark
 
 
+" Used by plgin RipGrep
 if executable('rg')
     let g:rg_derive_root='true'
 endif
 
+" Used by plugin ctrlp
 " Ignore things we may not be interested in searching for
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -310,7 +338,6 @@ nnoremap <leader>gh :diffget //2<CR>
 nnoremap <leader>gh :diffget //3<CR>
 
 
-
 " For JSONc. Colors correctly the comments
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -321,7 +348,7 @@ set cmdheight=2
 "let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
 
 " Creates pair of parentesis etc..
-let g:coc_global_extensions = ['coc-pairs', 'coc-json', 'coc-python']
+let g:coc_global_extensions = ['coc-pairs', 'coc-json', 'coc-python', 'coc-html']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -339,4 +366,39 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+"inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+"if exists('*complete_info')
+"  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"else
+"  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+" Goes to definition
+nmap <silent> gd <Plug>(coc-definition)
+" TODO: What is a type definition?
+nmap <silent> gy <Plug>(coc-type-definition)
+" TODO: What is implementation?
+nmap <silent> gi <Plug>(coc-implementation)
+" TODO: What is reference?
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+" NOTE: SHIFT + k, or upper case k
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
