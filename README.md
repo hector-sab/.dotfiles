@@ -1,7 +1,8 @@
 # Awesome dotfiles
 Prefered configurations for:
 - Vim
-- tmux
+- Tmux
+- Konsole
 
 ```
 ./install.sh
