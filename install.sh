@@ -26,8 +26,16 @@ else
     echo "Nvim not configured. Config file aready exists"
 fi
 
+# Konsole theme
+if [ ! -f ~/.local/share/konsole/Gruvbox.colorscheme ]; then
+    # We assume that konsole folder exists...
+    ln -s "$(pwd)"/konsole/Gruvbox.colorscheme ~/.local/share/konsole/Gruvbox.colorscheme
+else
+    echo "Konsole Gruvbox colorscheme already exists"
+fi
+
 # Plugins
 echo "Remember to install vim-plug for the plugins!"
-echo "https://github.com/junegunn/vim-plug"
-echo "\nPlease also remember to read the notes in the (N)Vim plugins"
+echo "https://github.com/junegunn/vim-plug\n"
+echo "Please also remember to read the notes in the (N)Vim plugins"
 echo "configurations. Some may require extra steps to make them work"
