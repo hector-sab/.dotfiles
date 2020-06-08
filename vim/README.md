@@ -5,3 +5,5 @@ Dependencies (pip):
 
 ## Useful commands
 :CocCommands   lets you select what environment your completion should work with
+    python.setInterpreter (Environment)
+    python.setLinter      (flake8, mypy)
