@@ -8,12 +8,12 @@ else
 fi
 
 # Vim setup
-if [ ! -f ~/.vimrc ]; then
-	#ln -s "$(pwd)"/vim/init.vim ~/.vimrc
-    echo "Vim configured"
-else
-    echo "Vim not configured. Config file aready exists"
-fi
+#if [ ! -f ~/.vimrc ]; then
+#	#ln -s "$(pwd)"/vim/init.vim ~/.vimrc
+#    echo "Vim configured"
+#else
+#    echo "Vim not configured. Config file aready exists"
+#fi
 
 # NeoVim setup
 if [ ! -f ~/.config/nvim/init.vim ]; then
@@ -30,6 +30,7 @@ fi
 if [ ! -f ~/.local/share/konsole/Gruvbox.colorscheme ]; then
     # We assume that konsole folder exists...
     ln -s "$(pwd)"/konsole/Gruvbox.colorscheme ~/.local/share/konsole/Gruvbox.colorscheme
+    echo "Konsole Gruvbox colorscheme set"
 else
     echo "Konsole Gruvbox colorscheme already exists"
 fi

@@ -296,39 +296,46 @@ colorscheme gruvbox
 set background=dark
 
 
-" Used by plgin RipGrep
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RipGrep
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('rg')
     let g:rg_derive_root='true'
 endif
+" Opens the ripgrep search
+nnoremap <leader>ps :Rg<SPACE>
 
-" Used by plugin ctrlp
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ignore things we may not be interested in searching for
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Undo Tree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show undo tree. History of changes we have done to the file
+nnoremap <leader>u :UndotreeShow<CR>
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Not a plugin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Allow changing between windows using <leader> + [h, j, k, l]
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
-" Show undo tree. History of changes we have done to the file
-nnoremap <leader>u :UndotreeShow<CR>
-
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 
-nnoremap <leader>ps :Rg<SPACE>
 
-
-" Go to definition for YCM
-" NOTE: `CTRL + o` and `CTRL + i` are used to go back and forth.
-"       Go through `vimtutor` for more info.
-"nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
-" TODO: What does it do?
-"nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim-Fugitive
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts for vim-fugitive
 " Git Status
 nnoremap <leader>gs :Gstatus<CR>
@@ -338,8 +345,15 @@ nnoremap <leader>gh :diffget //2<CR>
 nnoremap <leader>gh :diffget //3<CR>
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For JSONc. Colors correctly the comments
 autocmd FileType json syntax match Comment +\/\/.\+$+
+autocmd FileType yaml set tabstop=2 | set softtabstop=2 | set shiftwidth=2
+
+
+
 
 " For Coc
 " Give more space for displaying messages. Dark bar below the nvim bar.
@@ -366,7 +380,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-"inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
