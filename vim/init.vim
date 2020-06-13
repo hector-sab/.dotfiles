@@ -92,6 +92,10 @@
 syntax on
 let mapleader = " "
 
+" Move between buffers, even if it has unsaved changes.
+" Also used by Coc.nvim for go to definitions with unsaved buffers.
+set hidden
+
 " Disable error/EOL messages/sounds
 set noerrorbells
 
@@ -355,7 +359,9 @@ autocmd FileType yaml set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 
 
 
-" For Coc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Coc.nvim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Give more space for displaying messages. Dark bar below the nvim bar.
 set cmdheight=2
 " Debug
@@ -380,16 +386,17 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
+" It feels like it's doing the same as TAB
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-"if exists('*complete_info')
-"  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-"else
-"  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"endif
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -402,7 +409,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 " TODO: What is implementation?
 nmap <silent> gi <Plug>(coc-implementation)
-" TODO: What is reference?
+" Shows all the reference to that function
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
