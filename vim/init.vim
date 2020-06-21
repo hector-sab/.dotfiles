@@ -87,7 +87,14 @@
 " - Linux has two clipboards, thus we may need to sync them. If using KDE, use klipper
 "   (built-in) to sync them. However, anything you select will be copied into the clipboard
 "   if synchronized
-
+"
+"
+" Useful
+"
+" - Check healt of neovim installation `:checkhealt` or `vim -c checkhealt`
+" - Check all the key bindings `:help index`
+" - Check the binding of a particular key/combination with `:verbose imap
+"   <tab>` (for example)
 
 syntax on
 let mapleader = " "
@@ -95,6 +102,10 @@ let mapleader = " "
 " Move between buffers, even if it has unsaved changes.
 " Also used by Coc.nvim for go to definitions with unsaved buffers.
 set hidden
+
+" Disable Mouse
+" set mouse=
+" set ttymouse=
 
 " Disable error/EOL messages/sounds
 set noerrorbells
@@ -167,6 +178,7 @@ inoremap <F2> <C-o>:set list!<CR>
 vnoremap p pgvy
 
 " Allow copying from vim registry to system clipboard
+" NOTE: Make sure xclip is installed. Check alternatives with `:h clipboard`
 set clipboard+=unnamedplus
 
 " TODO: Figure out how to make copy to clipboard work through OSC52
@@ -220,6 +232,8 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
+
+set splitbelow splitright
 
 """"""""""""""""""""
 " Plugins
@@ -278,8 +292,10 @@ Plug 'kien/ctrlp.vim'
 "       using `pip install -U jedi`
 " NOTE: Check python interpreter being used
 "       :CocCommand python.setInterpreter
-" TODO: Check its github page and change jedi to a Language Server
-"       https://github.com/neoclide/coc-python
+" NOTE: Install npm install -g neovim.
+" NOTE: To use the Microsoft Python Language Server go to :CocConfig and
+"       write '{"python.jediEnabled": false}'. It will start downloading it
+"       after that.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Show undo tree in lateral pane
@@ -315,7 +331,7 @@ nnoremap <leader>ps :Rg<SPACE>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ignore things we may not be interested in searching for
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
+"let g:ctrlp_working_path_mode = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Undo Tree
@@ -423,3 +439,7 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+"https://github.com/neoclide/coc-python/issues/63
+"xmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)

@@ -15,6 +15,7 @@ fi
 #    echo "Vim not configured. Config file aready exists"
 #fi
 
+echo ""
 # NeoVim setup
 if [ ! -f ~/.config/nvim/init.vim ]; then
 	if [ ! -d ~/.config/nvim ]; then
@@ -27,6 +28,7 @@ else
 fi
 
 # Konsole theme
+echo ""
 if [ ! -f ~/.local/share/konsole/Gruvbox.colorscheme ]; then
     # We assume that konsole folder exists...
     ln -s "$(pwd)"/konsole/Gruvbox.colorscheme ~/.local/share/konsole/Gruvbox.colorscheme
@@ -36,7 +38,8 @@ else
 fi
 
 # Plugins
+echo ""
 echo "Remember to install vim-plug for the plugins!"
-echo "https://github.com/junegunn/vim-plug\n"
+echo "https://github.com/junegunn/vim-plug"
 echo "Please also remember to read the notes in the (N)Vim plugins"
 echo "configurations. Some may require extra steps to make them work"
