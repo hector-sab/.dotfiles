@@ -307,6 +307,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Show undo tree in lateral pane
 Plug 'mbbill/undotree'
 
+" Show indentation lines
+Plug 'Yggdroot/indentLine'
+
 " fzf
 set rtp^=/home/hector/.local/share/nvim/plugged/fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
