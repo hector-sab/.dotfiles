@@ -102,6 +102,9 @@ let mapleader = " "
 " Move between buffers, even if it has unsaved changes.
 " Also used by Coc.nvim for go to definitions with unsaved buffers.
 set hidden
+"
+" Give more space for displaying messages. Dark bar below the nvim bar.
+set cmdheight=2
 
 " Disable Mouse
 " set mouse=
@@ -234,6 +237,9 @@ else
 endif
 
 set splitbelow splitright
+
+" Show all characters in the markdowns
+set conceallevel=0
 
 """"""""""""""""""""
 " Plugins

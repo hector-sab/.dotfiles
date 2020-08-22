@@ -22,6 +22,7 @@ if [ ! -f ~/.config/nvim/init.vim ]; then
 		mkdir ~/.config/nvim
 	fi
 	ln -s "$(pwd)"/vim/init.vim ~/.config/nvim/init.vim
+    ln -s "$(pwd)/vim/plug-config" ~/.config/nvim/plug-config
     echo "Nvim configured"
 else
     echo "Nvim not configured. Config file aready exists"
