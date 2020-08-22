@@ -261,7 +261,7 @@ Plug 'gruvbox-community/gruvbox'
 "Plug 'jremmen/vim-ripgrep'
 
 " Used for git. I prefer sublime merge or vanilla git tbh. 
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 " Used for showing lines changed from the branch
 Plug 'mhinz/vim-signify'
 
@@ -372,11 +372,11 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts for vim-fugitive
 " Git Status
-nnoremap <leader>gs :Gstatus<CR>
+"nnoremap <leader>gs :Gstatus<CR>
 " In merge conflict. Select the commit from the left
-nnoremap <leader>gh :diffget //2<CR>
+"nnoremap <leader>gh :diffget //2<CR>
 " In merge conflict. Select the commit from the right
-nnoremap <leader>gh :diffget //3<CR>
+"nnoremap <leader>gh :diffget //3<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
