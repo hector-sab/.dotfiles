@@ -29,14 +29,14 @@ else
 fi
 
 # Konsole theme
-echo ""
-if [ ! -f ~/.local/share/konsole/Gruvbox.colorscheme ]; then
-    # We assume that konsole folder exists...
-    ln -s "$(pwd)"/konsole/Gruvbox.colorscheme ~/.local/share/konsole/Gruvbox.colorscheme
-    echo "Konsole Gruvbox colorscheme set"
-else
-    echo "Konsole Gruvbox colorscheme already exists"
-fi
+#echo ""
+#if [ ! -f ~/.local/share/konsole/Gruvbox.colorscheme ]; then
+#    # We assume that konsole folder exists...
+#    ln -s "$(pwd)"/konsole/Gruvbox.colorscheme ~/.local/share/konsole/Gruvbox.colorscheme
+#    echo "Konsole Gruvbox colorscheme set"
+#else
+#    echo "Konsole Gruvbox colorscheme already exists"
+#fi
 
 # Plugins
 echo ""
