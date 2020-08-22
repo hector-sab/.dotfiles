@@ -318,6 +318,7 @@ Plug 'junegunn/fzf.vim'
 
 " Stratify. For sessions management.
 Plug 'mhinz/vim-startify'
+Plug 'airblade/vim-rooter'
 call plug#end()
 
 
