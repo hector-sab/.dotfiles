@@ -314,6 +314,10 @@ Plug 'Yggdroot/indentLine'
 set rtp^=/home/hector/.local/share/nvim/plugged/fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+
+" Stratify. For sessions management.
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 
@@ -388,3 +392,5 @@ autocmd FileType yaml set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 
 
 source ~/.config/nvim/plug-config/coc.vim
+source ~/.config/nvim/plug-config/fzf.vim
+source ~/.config/nvim/plug-config/start-screen.vim
