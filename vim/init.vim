@@ -318,6 +318,7 @@ Plug 'junegunn/fzf.vim'
 
 " Stratify. For sessions management.
 Plug 'mhinz/vim-startify'
+
 Plug 'airblade/vim-rooter'
 call plug#end()
 
@@ -394,4 +395,5 @@ autocmd FileType yaml set tabstop=2 | set softtabstop=2 | set shiftwidth=2
 
 source ~/.config/nvim/plug-config/coc.vim
 source ~/.config/nvim/plug-config/fzf.vim
+" startify configs
 source ~/.config/nvim/plug-config/start-screen.vim
