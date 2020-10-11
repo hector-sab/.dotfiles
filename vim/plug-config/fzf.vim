@@ -9,8 +9,6 @@ nnoremap <leader>ps :Rg<SPACE><CR>
 
 nnoremap <leader>pf :RgFiles<SPACE><CR>
 
-let g:startify_session_persistence = 1
-
 " Window Location
 let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.6, 'yoffset': 1 } }
 

@@ -5,6 +5,8 @@
 " https://www.youtube.com/watch?v=9IcXJvoPHCY&t=344s
 let g:startify_session_dir = stdpath('data') . '/sessions'
 
+let g:startify_session_persistence = 1
+
 " Modify start menu
 let g:startify_lists = [
     \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
