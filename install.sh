@@ -21,8 +21,12 @@ if [ ! -f ~/.config/nvim/init.vim ]; then
 	if [ ! -d ~/.config/nvim ]; then
 		mkdir ~/.config/nvim
 	fi
+	# Main Vim config file
 	ln -s "$(pwd)"/vim/init.vim ~/.config/nvim/init.vim
-    ln -s "$(pwd)/vim/plug-config" ~/.config/nvim/plug-config
+	# Plugin configs
+        ln -s "$(pwd)/vim/plug-config" ~/.config/nvim/plug-config
+	# Coc Settings
+        ln -s "$(pwd)"/coc/coc-settings.json ~/.config/nvim/coc-settings.json
     echo "Nvim configured"
 else
     echo "Nvim not configured. Config file aready exists"
