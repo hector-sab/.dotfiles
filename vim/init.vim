@@ -311,7 +311,6 @@ Plug 'mbbill/undotree'
 Plug 'Yggdroot/indentLine'
 
 " fzf
-set rtp^=/home/hector/.local/share/nvim/plugged/fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
