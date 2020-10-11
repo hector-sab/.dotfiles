@@ -7,12 +7,23 @@ nnoremap <c-p> :Files<CR>
 
 nnoremap <leader>ps :Rg<SPACE><CR>
 
+nnoremap <leader>pf :RgFiles<SPACE><CR>
+
 let g:startify_session_persistence = 1
+
+" Window Location
+let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.6, 'yoffset': 1 } }
 
 "Get Files
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
+
+" For searching filenames and content
+command! -bang -nargs=* RgFiles
+    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '
+    \ . (len(<q-args>) > 0 ? <q-args> : '""'), 0,
+    \ fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 " To only show files with match in the content
 command! -bang -nargs=* Rg
