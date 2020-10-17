@@ -7,6 +7,18 @@ else
     echo "Tmux not configured. Config file aready exists"
 fi
 
+# Tmux color scheme
+TMUX_COLOR_SCHEMES_DIR=~/.config/tmux/colorschemes
+if [ ! -f $TMUX_COLOR_SCHEMES_DIR/gruvbox.conf ]; then
+    # Create folder if it does not exists
+    if [ ! -d $TMUX_COLOR_SCHEMES_DIR ]; then
+        mkdir -p $TMUX_COLOR_SCHEMES_DIR
+    fi
+    # Link file
+    ln -s "$(pwd)"/tmux/colorscheme-gruvbox.conf $TMUX_COLOR_SCHEMES_DIR/gruvbox.conf
+fi
+
+
 # Vim setup
 #if [ ! -f ~/.vimrc ]; then
 #	#ln -s "$(pwd)"/vim/init.vim ~/.vimrc
