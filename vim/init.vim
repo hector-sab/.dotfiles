@@ -99,6 +99,9 @@
 syntax on
 let mapleader = " "
 
+" Don't hide json quotes
+set conceallevel=0
+
 " Move between buffers, even if it has unsaved changes.
 " Also used by Coc.nvim for go to definitions with unsaved buffers.
 set hidden
