@@ -13,6 +13,10 @@ nnoremap <leader>pf :RgFiles<SPACE><CR>
 let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.6, 'yoffset': 1 } }
 
 "Get Files
+command! -bang -nargs=? -complete=dir GFiles
+    \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+"Get Files
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
