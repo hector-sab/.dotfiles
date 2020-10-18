@@ -1,28 +1,20 @@
 echo `pwd`
 # tmux setup
 if [ ! -f ~/.tmux.conf ]; then
-	ln -s "$(pwd)"/tmux/tmux.conf ~/.tmux.conf
+    ln -s "$(pwd)"/tmux/tmux.conf ~/.tmux.conf
     echo "Tmux configured"
 else
     echo "Tmux not configured. Config file aready exists"
 fi
 
-# Tmux color scheme
-TMUX_COLOR_SCHEMES_DIR=~/.config/tmux/colorschemes
-if [ ! -f $TMUX_COLOR_SCHEMES_DIR/gruvbox.conf ]; then
-    # Create folder if it does not exists
-    if [ ! -d $TMUX_COLOR_SCHEMES_DIR ]; then
-        mkdir -p $TMUX_COLOR_SCHEMES_DIR
-    fi
-    # Link file
-    ln -s "$(pwd)"/tmux/colorscheme-gruvbox.conf $TMUX_COLOR_SCHEMES_DIR/gruvbox.conf
-fi
+# Install Tmux Plugin Manager
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 
 # Vim setup
 #if [ ! -f ~/.vimrc ]; then
-#	#ln -s "$(pwd)"/vim/init.vim ~/.vimrc
-#    echo "Vim configured"
+#   #ln -s "$(pwd)"/vim/init.vim ~/.vimrc
+#   echo "Vim configured"
 #else
 #    echo "Vim not configured. Config file aready exists"
 #fi
@@ -30,15 +22,15 @@ fi
 echo ""
 # NeoVim setup
 if [ ! -f ~/.config/nvim/init.vim ]; then
-	if [ ! -d ~/.config/nvim ]; then
-		mkdir ~/.config/nvim
-	fi
-	# Main Vim config file
-	ln -s "$(pwd)"/vim/init.vim ~/.config/nvim/init.vim
-	# Plugin configs
-        ln -s "$(pwd)/vim/plug-config" ~/.config/nvim/plug-config
-	# Coc Settings
-        ln -s "$(pwd)"/coc/coc-settings.json ~/.config/nvim/coc-settings.json
+    if [ ! -d ~/.config/nvim ]; then
+        mkdir ~/.config/nvim
+    fi
+    # Main Vim config file
+    ln -s "$(pwd)"/vim/init.vim ~/.config/nvim/init.vim
+    # Plugin configs
+    ln -s "$(pwd)/vim/plug-config" ~/.config/nvim/plug-config
+    # Coc Settings
+    ln -s "$(pwd)"/coc/coc-settings.json ~/.config/nvim/coc-settings.json
     echo "Nvim configured"
 else
     echo "Nvim not configured. Config file aready exists"
