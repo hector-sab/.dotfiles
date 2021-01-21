@@ -183,6 +183,10 @@ inoremap <F2> <C-o>:set list!<CR>
 " SHIFT + p
 vnoremap p pgvy
 
+" Allow moving selected blocks of code up and down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 " Allow copying from vim registry to system clipboard
 " NOTE: Make sure xclip is installed. Check alternatives with `:h clipboard`
 set clipboard+=unnamedplus
