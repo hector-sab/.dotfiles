@@ -207,8 +207,20 @@ set clipboard+=unnamedplus
 "Enables paste mode in insert mode. Is it really needed in normal mode tho?
 set pastetoggle=<F3> 
 "Invert paste option in normal mode
-"nnoremap <F3> :set invpaste paste?<CR> 
+"nnoremap <F3> :set invpaste paste?<CR>
 
+
+" Remove all the whitespaces after the last character of each line
+fun! TrimWhitespaces()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup TRIM_WHITESPACES
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespaces()
+augroup END
 
 " Set side explorer settings
 " NOTE: Instead of NERDtree we use the default netrw
@@ -326,6 +338,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 
 " Plug 'airblade/vim-rooter'
+
+" Maximize panes
+Plug 'szw/vim-maximizer'
 call plug#end()
 
 
