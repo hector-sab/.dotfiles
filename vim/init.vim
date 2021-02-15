@@ -5,11 +5,11 @@
 " - Search letters in the same line
 " |1|   f + letter              to seaerch forward in the same line the
 " |2|   <SHIFT + f> + <letter>  to search backwards in the same line
-" |3|   t + letter              to search forward and place cursor one col 
+" |3|   t + letter              to search forward and place cursor one col
 "                               before
-" |4|   <SHIFT + t> + <letter>  to search backwards and place cursor one col 
+" |4|   <SHIFT + t> + <letter>  to search backwards and place cursor one col
 "                               before
-" 
+"
 " - Search text in the current buffer
 " |1|   /<my-text>     to search text forward
 " |2|   ?<my-text>     to search backwards
@@ -30,8 +30,8 @@
 "  - Convert spaces to tabs
 "  |1| :set tabstop=2     "To match the indentation of the file
 "  |2| :set noexpandtab   "Use tab characters for new tabs
-"  |3| :%retab!           "Reindent all existing tabs 
-" 
+"  |3| :%retab!           "Reindent all existing tabs
+"
 " SOURCE: https://stackoverflow.com/a/9105889/5969548
 "
 "  - Convert tabs to spaces
@@ -47,7 +47,7 @@
 "  |5| ESC                 "Exit mode and apply to all selected lines
 "
 " - Autocomplete
-"  i_CTRL-p               "Autocomplete <<< 
+"  i_CTRL-p               "Autocomplete <<<
 "  i_CTRL-n               "Autocomplete
 "  i_CTRL-x_CTRL-n        "Autocomplete using the words in the current file
 "
@@ -67,7 +67,7 @@
 """""""""""""""""""""""""""
 " <CR>  : Is like pressing Enter so it gets executed
 " <C-U> : Remove all characters between the cursor position and the
-"         beginning of the line. 
+"         beginning of the line.
 "         https://vi.stackexchange.com/a/9752/19783
 " <C-o> : Run a single normal mode command from insert mode
 "         https://vi.stackexchange.com/a/13165/19783
@@ -141,7 +141,7 @@ set nu rnu
 :  autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 :augroup END
 
-" Continue text off-screen 
+" Continue text off-screen
 " set nowrap
 
 set ignorecase
@@ -182,7 +182,7 @@ nnoremap <F2> :<C-U>setlocal lcs=tab:>-,eol:$ list! list? <CR>
 " Activate/deactivate spaces/tabs visualization in insert mode
 inoremap <F2> <C-o>:set list!<CR>
 
-" Allows pasting previous selection multiple times. For old behavior try 
+" Allows pasting previous selection multiple times. For old behavior try
 " SHIFT + p
 vnoremap p pgvy
 
@@ -208,7 +208,7 @@ set clipboard+=unnamedplus
 "       https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 " TODO: Check paste mode in normal mode
 "Enables paste mode in insert mode. Is it really needed in normal mode tho?
-set pastetoggle=<F3> 
+set pastetoggle=<F3>
 "Invert paste option in normal mode
 "nnoremap <F3> :set invpaste paste?<CR>
 
@@ -270,7 +270,7 @@ set conceallevel=0
 " https://github.com/junegunn/vim-plug
 "
 " NOTE: Vim plugins is: '~/.vim/plugged'
-"       Nvim plugins dir is: stdpath('data') . '/plugged' 
+"       Nvim plugins dir is: stdpath('data') . '/plugged'
 "           also known as ~/.local/share/nvim/plugged
 call plug#begin(stdpath('data') . '/plugged')
 " Theme. Look below for the color scheme
@@ -282,7 +282,7 @@ Plug 'gruvbox-community/gruvbox'
 "       sudo apt install ripgrep
 "Plug 'jremmen/vim-ripgrep'
 
-" Used for git. I prefer sublime merge or vanilla git tbh. 
+" Used for git. I prefer sublime merge or vanilla git tbh.
 " Plug 'tpope/vim-fugitive'
 " Used for showing lines changed from the branch
 Plug 'mhinz/vim-signify'
@@ -311,11 +311,11 @@ Plug 'vim-utils/vim-man'
 "       it. Otherwise there will be problems.
 "       Also `pip install pynvim` for each environment where nvim is going to
 "       be used.
-" Note3: If NOTE2 does not work. try checking out 
+" Note3: If NOTE2 does not work. try checking out
 "        github.com/ycm-core/YouCompleteMe#working-with-virtual-environments
 "Plug 'ycm-core/YouCompleteMe'
 
-" Autocompletion. 
+" Autocompletion.
 " Note: If using jedi for python, make sure the latest version is installed
 "       using `pip install -U jedi`
 " NOTE: Check python interpreter being used
@@ -410,7 +410,7 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " For JSONc. Colors correctly the comments
 autocmd FileType json syntax match Comment +\/\/.\+$+
