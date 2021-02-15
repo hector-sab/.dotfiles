@@ -344,6 +344,9 @@ Plug 'mhinz/vim-startify'
 
 " Maximize panes
 Plug 'szw/vim-maximizer'
+
+" Ranger
+Plug 'kevinhwang91/rnvimr'
 call plug#end()
 
 
@@ -421,3 +424,4 @@ source ~/.config/nvim/plug-config/coc.vim
 source ~/.config/nvim/plug-config/fzf.vim
 " startify configs
 source ~/.config/nvim/plug-config/start-screen.vim
+source ~/.config/nvim/plug-config/ranger.vim
