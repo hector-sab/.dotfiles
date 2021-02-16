@@ -1,136 +1,6 @@
-"""""""""""""""""""""
-" Common how-to's
-"""""""""""""""""""""
-" *** SEARCH ***
-" - Search letters in the same line
-" |1|   f + letter              to seaerch forward in the same line the
-" |2|   <SHIFT + f> + <letter>  to search backwards in the same line
-" |3|   t + letter              to search forward and place cursor one col
-"                               before
-" |4|   <SHIFT + t> + <letter>  to search backwards and place cursor one col
-"                               before
-"
-" - Search text in the current buffer
-" |1|   /<my-text>     to search text forward
-" |2|   ?<my-text>     to search backwards
-" |3|   <SHIFT + *>    to search the work under the cursor
-"
-" - Jumping
-" Use (,) or [,]
-"
-" - Capitalize
-" It needs to be in visual mode
-" |1|   <SHIFT + u>      for upper case
-" |2|   u                for lower case
-"
-" - Increment/Decrement number
-" |1|   CTRL + a     Incrementes a number
-" |2|   CTRL + x     Decrements a number
-"
-"  - Convert spaces to tabs
-"  |1| :set tabstop=2     "To match the indentation of the file
-"  |2| :set noexpandtab   "Use tab characters for new tabs
-"  |3| :%retab!           "Reindent all existing tabs
-"
-" SOURCE: https://stackoverflow.com/a/9105889/5969548
-"
-"  - Convert tabs to spaces
-"  |1| :set tabstop=2     "To match the indentation of the file
-"  |2| :set expandtab     "Use spaces characters for new tabs
-"  |3| :retab             "Reindent all existing tabs
-"
-" - Comment multiple lines
-"  |1| CTRL-V              "Enter Visual-Block mode
-"  |2| Move up-down        "Select all desired lines init
-"  |3| SHIFT-i             "Enter Insert mode
-"  |4| Write #, //, etc    "Write correct comment character
-"  |5| ESC                 "Exit mode and apply to all selected lines
-"
-" - Autocomplete
-"  i_CTRL-p               "Autocomplete <<<
-"  i_CTRL-n               "Autocomplete
-"  i_CTRL-x_CTRL-n        "Autocomplete using the words in the current file
-"
-" NOTE: For Vim help try `:h ins-completion`
-" NOTE: i_CTRL referers to CTRL in insert mode
-"
-" * Undo/Redo
-"  ------------
-"    u        "Undo
-"  CTRL-r     "Redo
-"
-"  NOTE: They must be in normal mode
-"  SOURE: https://vim.fandom.com/wiki/Undo_and_Redo#
-"
-"""""""""""""""""""""""""""
-" About some commands in case I forget...
-"""""""""""""""""""""""""""
-" <CR>  : Is like pressing Enter so it gets executed
-" <C-U> : Remove all characters between the cursor position and the
-"         beginning of the line.
-"         https://vi.stackexchange.com/a/9752/19783
-" <C-o> : Run a single normal mode command from insert mode
-"         https://vi.stackexchange.com/a/13165/19783
-"
-"""""""""""""""""""""""""""
-" Resourses
-"""""""""""""""""""""""""""
-" Mapping on Vim: https://learnvimscriptthehardway.stevelosh.com/chapters/05.html
-"                 https://vim.fandom.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
-" Copy/Paste    : https://linuxize.com/post/how-to-copy-cut-paste-in-vim/
-"
-"""""""""""""""""""""""""""
-" Notes
-"""""""""""""""""""""""""""
-" - Official repo from Ubuntu may have not been compiled to have +clipboard (allows copy
-"   from-to vim). An alternative is vim-gtk3
-" - Linux has two clipboards, thus we may need to sync them. If using KDE, use klipper
-"   (built-in) to sync them. However, anything you select will be copied into the clipboard
-"   if synchronized
-"
-"
-" Useful
-"
-" - Check healt of neovim installation `:checkhealt` or `vim -c checkhealt`
-" - Check all the key bindings `:help index`
-" - Check the binding of a particular key/combination with `:verbose imap
-"   <tab>` (for example)
-
 syntax on
 let mapleader = " "
 
-" Don't hide json quotes
-set conceallevel=0
-
-" Have 8 lines between the start/end of vim and the cursor
-set scrolloff=8
-
-" Move between buffers, even if it has unsaved changes.
-" Also used by Coc.nvim for go to definitions with unsaved buffers.
-set hidden
-"
-" Give more space for displaying messages. Dark bar below the nvim bar.
-set cmdheight=2
-
-" Disable Mouse
-" set mouse=
-" set ttymouse=
-
-" Disable error/EOL messages/sounds
-set noerrorbells
-
-" Define tabs and stuff as 4 spaces
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-
-" Convert tabs to spaces
-set expandtab
-
-" NOTE: Auto indent is on by default on nvim, and it's
-"       required by smartindent
-set autoindent
-" TODO: Check if it works well with python
-"set smartindent
 
 " Numerates the lines, and adds hybrid numeration
 set nu rnu
@@ -141,32 +11,6 @@ set nu rnu
 :  autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 :augroup END
 
-" Continue text off-screen
-" set nowrap
-
-set ignorecase
-set smartcase
-
-" NOTE: Swap not really required since we have undofile.
-set noswapfile
-
-" NOTE: Backup not really required since we have undofile.
-set nobackup
-
-" NOTE: Undo dir is already default to where it should be. You can read the
-"       documentation with the following commands:
-"       :help base-directories
-"       :help undodir
-" set undodir=~/.local/share/nvim
-
-" NOTE: For more information check
-"       :h persistent-undo
-set undofile
-
-" Allows incremental search. On by default in nvim
-" NOTE: Lool at is.vim, the highlight looks much nicer
-"       https://github.com/haya14busa/is.vim
-set incsearch
 
 
 " Set the line character that should be colored
@@ -189,28 +33,6 @@ vnoremap p pgvy
 " Allow moving selected blocks of code up and down
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-
-" Allow copying from vim registry to system clipboard
-" NOTE: Make sure xclip is installed. Check alternatives with `:h clipboard`
-set clipboard+=unnamedplus
-
-" TODO: Figure out how to make copy to clipboard work through OSC52
-" Copy yanke buffer to  system clipboard
-" Use OSC52 to put things into the system clipboard, works over SSH!
-"function! Osc52Yank()
-"    let buffer=system('base64 -w0', @0) " -wO to disable 76 char line wrapping
-"    let buffer='\ePtmux;\e\e]52;c;'.buffer.'\x07\e\\'
-"    silent exe "!echo -ne ".shellescape(buffer)." > ".shellescape(g:tty)
-"endfunction
-
-" Disbale auto-indent when pasting something
-" TODO: Check the following link for automatic paste mode
-"       https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
-" TODO: Check paste mode in normal mode
-"Enables paste mode in insert mode. Is it really needed in normal mode tho?
-set pastetoggle=<F3>
-"Invert paste option in normal mode
-"nnoremap <F3> :set invpaste paste?<CR>
 
 
 " Remove all the whitespaces after the last character of each line
