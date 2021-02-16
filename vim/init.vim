@@ -12,11 +12,6 @@ call plug#begin(stdpath('data') . '/plugged')
 "Plug 'morhetz/gruvbox'
 Plug 'gruvbox-community/gruvbox'
 
-" Use ripgrep
-" NOTE: It requires ripgrep in your system.
-"       sudo apt install ripgrep
-"Plug 'jremmen/vim-ripgrep'
-
 " Used for git. I prefer sublime merge or vanilla git tbh.
 " Plug 'tpope/vim-fugitive'
 " Used for showing lines changed from the branch
@@ -33,22 +28,9 @@ Plug 'vim-utils/vim-man'
 " For C++ ?
 " Plug 'lyuts/vim-rtags'
 
-" Find path files and more... Replaced with fzf
-" NOTE: Use CTRL + P to open the search
-" Plug 'kien/ctrlp.vim'
-
 " TODO: Automatic nohighlight after search. Next plugin take care of that but
 "       I am not sure if there's something better.
 "Plug 'haya14busa/is.vim'
-
-" NOTE1: Once installed, we have to go to the plug directory and install.py.
-" NOTE2: FOR PYTHON. If a virtual enviroment for python is present, deactivate
-"       it. Otherwise there will be problems.
-"       Also `pip install pynvim` for each environment where nvim is going to
-"       be used.
-" Note3: If NOTE2 does not work. try checking out
-"        github.com/ycm-core/YouCompleteMe#working-with-virtual-environments
-"Plug 'ycm-core/YouCompleteMe'
 
 " Autocompletion.
 " Note: If using jedi for python, make sure the latest version is installed
@@ -70,7 +52,6 @@ Plug 'Yggdroot/indentLine'
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
 
 " Stratify. For sessions management.
 Plug 'mhinz/vim-startify'
@@ -208,10 +189,3 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 " For JSONc. Colors correctly the comments
 autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd FileType yaml set tabstop=2 | set softtabstop=2 | set shiftwidth=2
-
-
-source ~/.config/nvim/plug-config/coc.vim
-source ~/.config/nvim/plug-config/fzf.vim
-" startify configs
-source ~/.config/nvim/plug-config/start-screen.vim
-source ~/.config/nvim/plug-config/ranger.vim
