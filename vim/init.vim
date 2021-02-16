@@ -1,90 +1,3 @@
-syntax on
-let mapleader = " "
-
-
-" Numerates the lines, and adds hybrid numeration
-set nu rnu
-" Automatically change to absolute numbering once we are editings
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
-:augroup END
-
-
-
-" Set the line character that should be colored
-set colorcolumn=80
-" NOTE: ctermX and guiX are used for terminal and gui version respectively.
-"       For colors keywords look at
-"       :help cterm-colors
-highlight ColorColumn ctermbg=DarkGrey guibg=DarkGray
-
-
-" Activate/deactivate spaces/tabs visualization in normal mode
-nnoremap <F2> :<C-U>setlocal lcs=tab:>-,eol:$ list! list? <CR>
-" Activate/deactivate spaces/tabs visualization in insert mode
-inoremap <F2> <C-o>:set list!<CR>
-
-" Allows pasting previous selection multiple times. For old behavior try
-" SHIFT + p
-vnoremap p pgvy
-
-" Allow moving selected blocks of code up and down
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-
-" Remove all the whitespaces after the last character of each line
-fun! TrimWhitespaces()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-augroup TRIM_WHITESPACES
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespaces()
-augroup END
-
-" Set side explorer settings
-" NOTE: Instead of NERDtree we use the default netrw
-"       How to use it:
-"       :Lexplore   or   :Le      <-- For explorer toggled to the left
-"       :Vexplore   or   :Ve      <-- For vertical split
-"       :Hexplore   or   :He      <-- For horizontal split
-"       :Explore    or   :E       <-- For full pane explorer
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
-let g:netrw_banner = 0
-let g:netrw_winsize = 30
-
-" Create a lateral side explorer
-" NOTE: Using `:Le` replaces the remap for me
-"nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
-nnoremap <leader>pv :Lex<CR>
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-set splitbelow splitright
-
-" Show all characters in the markdowns
-set conceallevel=0
-
 """"""""""""""""""""
 " Plugins
 """""""""""""""""""""
@@ -173,34 +86,89 @@ call plug#end()
 
 
 
+
+syntax on
+let mapleader = " "
+
+
+" Numerates the lines, and adds hybrid numeration
+set nu rnu
+" Automatically change to absolute numbering once we are editings
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+:augroup END
+
+
+
+" Set the line character that should be colored
+set colorcolumn=80
+" NOTE: ctermX and guiX are used for terminal and gui version respectively.
+"       For colors keywords look at
+"       :help cterm-colors
+highlight ColorColumn ctermbg=DarkGrey guibg=DarkGray
+
+
+" Activate/deactivate spaces/tabs visualization in normal mode
+nnoremap <F2> :<C-U>setlocal lcs=tab:>-,eol:$ list! list? <CR>
+" Activate/deactivate spaces/tabs visualization in insert mode
+inoremap <F2> <C-o>:set list!<CR>
+
+" Allows pasting previous selection multiple times. For old behavior try
+" SHIFT + p
+vnoremap p pgvy
+
+" Allow moving selected blocks of code up and down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+
+" Remove all the whitespaces after the last character of each line
+fun! TrimWhitespaces()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup TRIM_WHITESPACES
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespaces()
+augroup END
+
+" Set side explorer settings
+" NOTE: Instead of NERDtree we use the default netrw
+"       How to use it:
+"       :Lexplore   or   :Le      <-- For explorer toggled to the left
+"       :Vexplore   or   :Ve      <-- For vertical split
+"       :Hexplore   or   :He      <-- For horizontal split
+"       :Explore    or   :E       <-- For full pane explorer
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_banner = 0
+let g:netrw_winsize = 30
+
+" Create a lateral side explorer
+" NOTE: Using `:Le` replaces the remap for me
+"nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>pv :Lex<CR>
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+
+
+
+
 """""""""""""""""""""
 " Custom commands/shortcuts
-"""""""""""""""""""""
 
-" Set color scheme
-" Allows vim to show correcto colors somehow
-set termguicolors
-let g:gruvbox_italic=1
-colorscheme gruvbox
-set background=dark
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RipGrep
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if executable('rg')
-"    let g:rg_derive_root='true'
-"endif
-"" Opens the ripgrep search
-"nnoremap <leader>ps :Rg<SPACE>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ignore things we may not be interested in searching for
-"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-"let g:ctrlp_working_path_mode = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Undo Tree
