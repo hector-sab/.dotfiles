@@ -23,14 +23,9 @@ echo ""
 # NeoVim setup
 if [ ! -f ~/.config/nvim/init.vim ]; then
     if [ ! -d ~/.config/nvim ]; then
+        ln -s ~/.config/nvim "$(pwd)"/vim
         mkdir ~/.config/nvim
     fi
-    # Main Vim config file
-    ln -s "$(pwd)"/vim/init.vim ~/.config/nvim/init.vim
-    # Plugin configs
-    ln -s "$(pwd)/vim/plug-config" ~/.config/nvim/plug-config
-    # Coc Settings
-    ln -s "$(pwd)"/coc/coc-settings.json ~/.config/nvim/coc-settings.json
     echo "Nvim configured"
 else
     echo "Nvim not configured. Config file aready exists"
