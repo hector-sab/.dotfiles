@@ -17,7 +17,7 @@ local options = {
 	--
 	splitbelow = true,
 	splitright = true,
-	--
+	-- Indentation
 	tabstop = 4,
 	softtabstop = 4,
 	shiftwidth = 4,
