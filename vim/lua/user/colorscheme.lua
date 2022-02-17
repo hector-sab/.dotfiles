@@ -1,4 +1,4 @@
-local colorscheme = "gruvbox-material"
+local colorscheme = "tokyonight"
 local background = "dark"
 
 if colorscheme == "gruvbox-material" then

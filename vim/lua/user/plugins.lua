@@ -47,6 +47,7 @@ return packer.startup(function(use)
 
   -- Color Schemes
   use 'sainnhe/gruvbox-material'
+  use 'folke/tokyonight.nvim'
 
   use 'mbbill/undotree'
   use {
@@ -74,6 +75,14 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer"
+
+  -- Treesitter
+  use {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+  }
+  use "p00f/nvim-ts-rainbow"
+  use "nvim-treesitter/playground"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
