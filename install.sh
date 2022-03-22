@@ -1,7 +1,7 @@
 echo `pwd`
 # Git setup
 if [ ! -f ~/.config/git/config ]; then
-    ln -s ~/.config/git "$(pwd)"/git
+    ln -s "$(pwd)"/git ~/.config/git
     echo "Git configured successfully."
 else
     echo "Git config file already exists. Skipping"
