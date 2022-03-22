@@ -1,4 +1,12 @@
 echo `pwd`
+# Git setup
+if [ ! -f ~/.config/git/config ]; then
+    ln -s ~/.config/git "$(pwd)"/git
+    echo "Git configured successfully."
+else
+    echo "Git config file already exists. Skipping"
+end
+
 # tmux setup
 if [ ! -f ~/.tmux.conf ]; then
     ln -s "$(pwd)"/tmux/tmux.conf ~/.tmux.conf
