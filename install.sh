@@ -1,4 +1,12 @@
 echo `pwd`
+# Git setup
+if [ ! -f ~/.config/git/config ]; then
+    ln -s "$(pwd)"/git ~/.config/git
+    echo "Git configured successfully."
+else
+    echo "Git config file already exists. Skipping"
+end
+
 # tmux setup
 if [ ! -f ~/.tmux.conf ]; then
     ln -s "$(pwd)"/tmux/tmux.conf ~/.tmux.conf
@@ -23,14 +31,9 @@ echo ""
 # NeoVim setup
 if [ ! -f ~/.config/nvim/init.vim ]; then
     if [ ! -d ~/.config/nvim ]; then
+        ln -s ~/.config/nvim "$(pwd)"/vim
         mkdir ~/.config/nvim
     fi
-    # Main Vim config file
-    ln -s "$(pwd)"/vim/init.vim ~/.config/nvim/init.vim
-    # Plugin configs
-    ln -s "$(pwd)/vim/plug-config" ~/.config/nvim/plug-config
-    # Coc Settings
-    ln -s "$(pwd)"/coc/coc-settings.json ~/.config/nvim/coc-settings.json
     echo "Nvim configured"
 else
     echo "Nvim not configured. Config file aready exists"
