@@ -5,5 +5,5 @@
 	name = Hector SB
 	email = hector.sab@hotmail.com
 
-[includeIf "gitdir:~/data/sources/"]
+[includeIf "gitdir:~/data/aifi/sources/"]
     path = ~/.config/work/git/config
