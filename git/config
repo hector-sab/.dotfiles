@@ -5,5 +5,8 @@
 	name = Hector SB
 	email = hector.sab@hotmail.com
 
+[push]
+    autoSetupRemote = true
+
 [includeIf "gitdir:~/data/aifi/sources/"]
     path = ~/.config/work/git/config
