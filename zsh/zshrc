@@ -1,0 +1,14 @@
+if [[ "$PATH" != *"$HOME/.local/bin"* ]]; then
+        export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Specify configurations specific to Linux
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	:
+# Specify configurations specific to MacOs
+elif [[ "$OSTYPE" == "darwin"* ]] then
+	:
+# Unknown OS
+else
+	echo "Unknown OS. Your ZSH configuration might not work properly."
+fi
