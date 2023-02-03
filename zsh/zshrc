@@ -1,13 +1,21 @@
 if [[ "$PATH" != *"$HOME/.local/bin"* ]]; then
-        export PATH="$HOME/.local/bin:$PATH"
+        export PATH="$PATH:$HOME/.local/bin"
 fi
+
+function add_wezterm_to_path_macos {
+	WEZTERM_ROOT_PATH=/Applications/WezTerm.app
+	if [[ -d "$WEZTERM_ROOT_PATH" && "$PATH" != *"$WEZTERM_ROOT_PATH"* ]]
+	then
+		export PATH="$PATH:$WEZTERM_ROOT_PATH/Contents/MacOS"
+	fi
+}
 
 # Specify configurations specific to Linux
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	:
 # Specify configurations specific to MacOs
 elif [[ "$OSTYPE" == "darwin"* ]] then
-	:
+	add_wezterm_to_path_macos
 # Unknown OS
 else
 	echo "Unknown OS. Your ZSH configuration might not work properly."
