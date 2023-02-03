@@ -1,7 +1,10 @@
 local wezterm = require 'wezterm'
 
-local function system_colorscheme()
-    appearance = wezterm.gui.get_appearance()
+local function system_colorscheme(appearance)
+    if appearance == nil or appearance == '' then
+        appearance = wezterm.gui.get_appearance()
+    end
+
     if appearance:find 'Dark' then
         -- return 'Custom Aci (Gogh)'
         return 'Aci (Gogh)'
