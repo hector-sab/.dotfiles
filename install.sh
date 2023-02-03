@@ -1,4 +1,18 @@
 echo `pwd`
+
+# ZSH Setup
+ZSH_CONFIG_PATH="$HOME/.zshrc"
+if [ ! -f $ZSH_CONFIG_PATH ]; then
+	ln -s "$(pwd)/zsh/zshrc" $ZSH_CONFIG_PATH
+fi
+
+# WezTerm Setup
+WEZTERM_CONFIG_PATH="$HOME/.config/wezterm"
+if [ ! -f $WEZTERM_CONFIG_PATH ]; then
+	ln -s "$(pwd)/wezterm" $WEZTERM_CONFIG_PATH
+	echo "WezTerm configured successfully"
+fi
+
 # Git setup
 if [ ! -f ~/.config/git/config ]; then
     ln -s "$(pwd)"/git ~/.config/git
