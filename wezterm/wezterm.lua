@@ -15,6 +15,9 @@ local function system_colorscheme(appearance)
 end
 
 return {
-    enable_tab_bar = true,
-    color_scheme = system_colorscheme(),
+    enable_tab_bar = false,
+    -- color_scheme = system_colorscheme(),
+    -- color_scheme = 'TokyoNight (Gogh)',
+    color_scheme = 'tokyonight',
+    --color_scheme = 'Fruit Soda (base16)',
 }
