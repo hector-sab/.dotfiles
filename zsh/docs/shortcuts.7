@@ -1,0 +1,66 @@
+." Process this file with
+." groff -man -Tascii shortcuts.7
+."
+.TH zsh_shortcuts(7)
+
+.Sh NAME
+.B zsh_shortcuts
+- vim-mode zsh keyboard shortcuts for an awesome experience
+
+.SH DESCRIPTION
+.B zsh_shortcuts
+This documentation is intended to be used to remind me of the shortcuts available in zsh vim-mode. They might just be the default ones, but there might be others I have added.
+
+.SH INSERT MODE
+.TP
+.B "CTRL + w "
+Backward delete a word.
+
+.TP
+.B "CTRL + h "
+Backward delte a character.
+
+.TP
+.B "CTRL + u "
+Backward delete line characters from current position.
+
+.TP
+.B "CTRL + e "
+Edit command using $EDITOR. To exit accepting the changes to the command use :x, else :q!; the command won't auto execute once the buffer is sent back to the terminal.
+
+.TP
+.B "ESC "
+Enables normal mode.
+
+.SH NORMAL MODE
+.TP
+.B "/       "
+Search histoy from last to first. You can iterate the history results as usual with n and N.
+
+.TP
+.B "?       "
+Search forward in history. Currently doesn't make any sense as it we will need to traverse backwards to see any result and it will be the same behavior as with /.
+
+.TP
+.B "CTRL + e "
+Edit command using $EDITOR. To exit accepting the changes to the command use :x, else :q!; the command won't auto execute once the buffer is sent back to the terminal.
+
+.TP
+.B "diw     "
+Deletes word under the cursos; it won't include the following white space. For more information look at vim `:text-objects`.
+.TP
+
+.B "daw     "
+Deletes word under the cursos; it will include the following white space. For more information look at vim `:text-objects`.
+
+.TP
+.B "i       "
+Enables insert mode before the current character.
+
+.TP
+.B "a       "
+Enables insert mode after the current character.
+
+.SH CREDITS
+.PP
+This man page is created to remind what's possible using zsh by Hector Sab.
