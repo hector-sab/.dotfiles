@@ -1,0 +1,11 @@
+# https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc
+set hidden
+set autoquit on
+
+# Exit on original PWD on quit. This is useful as in ZSH we setup
+# a function that forces lf to cd into the last directory it was.
+# https://github.com/gokcehan/lf/issues/140#issuecomment-1229137682
+map q %{{
+  lf -remote "send $id :cd $_LF_CURRENT_PWD; quit"
+}}
+map Q quit
