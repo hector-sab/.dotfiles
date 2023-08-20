@@ -1,3 +1,0 @@
-- name: Execution inside test
-  ansible.builtin.debug:
-    msg: Hello world from test

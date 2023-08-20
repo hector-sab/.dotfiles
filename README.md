@@ -18,3 +18,6 @@ Used to setup my systems. Use `ansible.sh`.
 - macports installation of ansible appends a `-3.11`, which is annoying. The note of the port has the answer.... `port select --set ansible py311-ansible`.
 - Blog aboug using ansible/stow for managing dotfiles. [Blog](https://www.iduoad.com/posts/treat-your-dotfiles-better/).
 - Blog about ansible and stow, change aware. [Blog](https://phelipetls.github.io/posts/introduction-to-ansible/).
+- tmux has a menu when doing `<prefix> <`. Don't forget it!
+- Online man editor. [Tool](https://roperzh.github.io/grapse/).
+- Where to put man pages. [SO question](https://unix.stackexchange.com/questions/90759/where-should-i-install-manual-pages-in-user-directory).

@@ -1,0 +1,17 @@
+# Renames a tmux pane custom title name
+#
+# To execute this command, make sure to be inside a
+# tmux session.
+# $ ./tmux-rename-pane new-name
+#
+# To remove the name execute the it without any
+# argument.
+# $ ./tmux-rename-pane
+
+if ! command -v tmux &> /dev/null
+then
+    # https://stackoverflow.com/a/23550347
+    >&2 echo "tmux is not available"
+    exit 1
+fi
+tmux set-option -p @custom_pane_title "$1"
