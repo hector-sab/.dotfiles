@@ -1,0 +1,56 @@
+- name: Ensures MacPorts is installed
+  stat:
+    path: /opt/local/bin/port
+  register: macports_check
+
+- name: Fail if MacPorts is not installed
+  fail:
+    msg: MacPorts is missing.
+  when:
+    - not macports_check.stat.exists
+
+- name: Install MacPort setup dependencies
+  become: true
+  community.general.macports:
+    name: "{{ ports }}"
+  vars:
+    ports:
+      - ncurses  # Used for generating correct term info
+      - git
+      - wezterm
+      - lf
+      - stow
+      - tmux
+
+# Ensures that tmux can work properly. Which should be version 6+
+
+- name: Checks that macport ncurses is available
+  stat:
+    path: /opt/local/bin/infocmp
+  register: ncurses_check
+
+- name: Fail if macports ncurses is not available
+  fail:
+    msg: MacPorts ncurses is missing.
+  when:
+    - not ncurses_check.stat.exists
+
+- name: Checks if tmux256 info has been installed
+  stat:
+    path: $HOME/.local/share/terminfo/74/tmux-256color
+  register: xterm256_check
+
+- name: Install xterm256 info. Allow tmux DEL to work properly
+  ansible.builtin.shell: |
+    BUILD_DIR=$(mktemp -d)
+    XTEMR_INFO_SRC_PATH=$BUILD_DIR/tmux-256color.src
+    USER_TERMINFO_DIRS=$HOME/.local/share/terminfo
+    # Uses macports ncurses to create the source file
+    /opt/local/bin/infocmp -x tmux-256color > $XTEMR_INFO_SRC_PATH
+    # Patches it
+    sed -i 's/pairs#0x10000/pairs#32767/' $XTEMR_INFO_SRC_PATH
+    sed -i 's/pairs#65536/pairs#32767/' $XTEMR_INFO_SRC_PATH
+    # Add it to the system
+    /usr/bin/tic -x -o $USER_TERMINFO_DIRS $XTEMR_INFO_SRC_PATH
+  when:
+    - not xterm256_check.stat.exists

@@ -1,9 +1,0 @@
-[merge]
-    conflictStyle = zdiff3
-
-[user]
-	name = Hector SB
-	email = hector.sab@hotmail.com
-
-[includeIf "gitdir:~/data/sources/"]
-    path = ~/.config/work/git/config

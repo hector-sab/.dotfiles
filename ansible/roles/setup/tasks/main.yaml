@@ -1,0 +1,4 @@
+- name: Setup MacOs
+  ansible.builtin.import_tasks:
+    file: macos.yaml
+  when: ansible_distribution == "MacOSX"

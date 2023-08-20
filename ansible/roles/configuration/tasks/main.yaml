@@ -1,0 +1,7 @@
+- name: Stow dotfiles
+  ansible.builtin.shell:
+    cmd: "stow {{ item }} -d {{ playbook_dir }}/.. --target {{ ansible_env.HOME }} --verbose=2"
+  register: result
+  changed_when: 'result.stderr is search("LINK: ")'
+  loop:
+    - tmux
