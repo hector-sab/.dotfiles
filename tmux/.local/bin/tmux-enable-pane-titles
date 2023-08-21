@@ -1,0 +1,14 @@
+# Enables dynamic pane titles for the current window
+if ! command -v tmux &> /dev/null
+then
+    # https://stackoverflow.com/a/23550347
+    >&2 echo "tmux is not available"
+    exit 1
+fi
+
+# Sets the position of the pane title
+tmux set pane-border-status top
+# Sets the style of the title
+tmux set pane-border-format "[#{pane_index}: #{pane_current_command}] #{@custom_pane_title}#{?#{@custom_pane_title}, ,}"
+# Adds hook for disabling the pane title when in zoom
+tmux set-hook window-layout-changed 'set-window -F pane-border-status "#{?#{||:#{==:#{window_panes},1},#{window_zoomed_flag}},off,top}"'
