@@ -1,4 +1,18 @@
 # Enables dynamic pane titles for the current window
+#
+# For more info on how the #{} works, take a look at
+#   https://github.com/tmux/tmux/wiki/Formats#comparisons
+#
+# Enables pane title manually, easily
+# -----
+# https://stackoverflow.com/a/40333995
+# https://stackoverflow.com/a/73050709
+# -----
+# $ tmux set pane-border-status top  # Enables showing the pane borders with titles
+# $ tmux select-pane -T <title>  # Controls `pane_title`
+
+
+# Makes sure tmux is available
 if ! command -v tmux &> /dev/null
 then
     # https://stackoverflow.com/a/23550347
@@ -8,7 +22,23 @@ fi
 
 # Sets the position of the pane title
 tmux set pane-border-status top
+
 # Sets the style of the title
-tmux set pane-border-format "[#{pane_index}: #{pane_current_command}] #{@custom_pane_title}#{?#{@custom_pane_title}, ,}"
-# Adds hook for disabling the pane title when in zoom
-tmux set-hook window-layout-changed 'set-window -F pane-border-status "#{?#{||:#{==:#{window_panes},1},#{window_zoomed_flag}},off,top}"'
+# NOTE: For style 1 and 2 you can use `set-option -p @custom_pane_title '<something>'` to set the custome title
+#   or we can setup the binding below to ask for a title
+#   bind < command-prompt -p "New Title: " -I "#{@custom_pane_title}" "set-option -p @custom_pane_title '%%'"
+TMUX_PANE_TITLE_STYLE_1=" [#{pane_index}: #{pane_current_command}] #{@custom_pane_title}#{?#{@custom_pane_title}, ,}"
+TMUX_PANE_TITLE_STYLE_2=" [#{pane_index}#{?#{@custom_pane_title},: ,}#{@custom_pane_title}] #{pane_current_command} "
+TMUX_PANE_TITLE_STYLE_3=" [ ###P #T] "
+TMUX_PANE_TITLE_STYLE_4="#P #{pane_current_command}"
+tmux set pane-border-format "$TMUX_PANE_TITLE_STYLE_2"
+
+
+
+# Shows pane title when there's only one pane in the window
+# https://unix.stackexchange.com/a/559059
+TMUX_COMMAND_OPTION_1='set-window -F pane-border-status "#{?#{==:#{window_panes},1},off,top}"'
+# Also hides the pane title when a pane has been zoomed in
+TMUX_COMMAND_OPTION_2='set-window -F pane-border-status "#{?#{||:#{==:#{window_panes},1},#{window_zoomed_flag}},off,top}"'
+
+tmux set-hook window-layout-changed "$TMUX_COMMAND_OPTION_2"
