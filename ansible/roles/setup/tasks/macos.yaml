@@ -54,3 +54,5 @@
     /usr/bin/tic -x -o $USER_TERMINFO_DIRS $XTEMR_INFO_SRC_PATH
   when:
     - not xterm256_check.stat.exists
+      - tree-sitter
+      - tree-sitter-cli
