@@ -5,3 +5,4 @@
   changed_when: 'result.stderr is search("LINK: ")'
   loop:
     - tmux
+    - nvim
