@@ -1,1 +1,2 @@
+require("startup")
 require("base")
