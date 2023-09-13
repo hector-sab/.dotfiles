@@ -21,6 +21,8 @@
       - lf
       - stow
       - tmux
+      - tree-sitter
+      - tree-sitter-cli
 
 # Ensures that tmux can work properly. Which should be version 6+
 
@@ -54,5 +56,3 @@
     /usr/bin/tic -x -o $USER_TERMINFO_DIRS $XTEMR_INFO_SRC_PATH
   when:
     - not xterm256_check.stat.exists
-      - tree-sitter
-      - tree-sitter-cli
