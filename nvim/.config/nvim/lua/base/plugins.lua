@@ -43,6 +43,12 @@ local undotree = {
     },
 }
 
+local tokyonight = {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+}
+
 local plugins = {
     telescope,
     harpoon,
@@ -51,6 +57,7 @@ local plugins = {
     'lukas-reineke/indent-blankline.nvim',
     'tpope/vim-fugitive',  -- Testing out
     'lewis6991/gitsigns.nvim',
+    tokyonight,
 }
 
 lazy.setup(plugins)
