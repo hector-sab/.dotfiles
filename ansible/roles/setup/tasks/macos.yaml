@@ -23,6 +23,7 @@
       - tmux
       - tree-sitter
       - tree-sitter-cli
+      - jq
 
 # Ensures that tmux can work properly. Which should be version 6+
 
