@@ -10,9 +10,21 @@
 DEFAULT_THEME=dark
 
 TOKYONIGHT_DIR="$HOME/.local/share/nvim/lazy/tokyonight.nvim/extras/tmux"
-
 DARK=$TOKYONIGHT_DIR/tokyonight_moon.tmux
 LIGHT=$TOKYONIGHT_DIR/tokyonight_day.tmux
+
+CACHE_DIR=$HOME/.cache/tmux/hsb
+CACHE_PATH=$CACHE_DIR/colors.json
+
+
+mkdir -p $CACHE_DIR
+if [[ ! -f "$CACHE_PATH" ]]; then
+    echo "{\"color_scheme\": \"$DEFAULT_THEME\"}" > $CACHE_PATH
+else
+    CACHED_THEME=$(jq -r '.color_scheme' $CACHE_PATH)
+    DEFAULT_THEME=$CACHED_THEME
+fi
+
 
 if [ ! -d "$TOKYONIGHT_DIR" ]; then
     echo "Tokyo night is not available in the system"
@@ -28,4 +40,10 @@ elif [[ $THEME == "LIGHT" ]]; then
     tmux source-file $LIGHT
 else
     echo "Color scheme for $THEME not found"
+    exit
 fi
+
+
+TMP_CACHE_PATH=$(mktemp)
+jq --arg color_scheme "$THEME" '.color_scheme = $color_scheme' "$CACHE_PATH" > "$TMP_CACHE_PATH"
+mv $TMP_CACHE_PATH $CACHE_PATH
