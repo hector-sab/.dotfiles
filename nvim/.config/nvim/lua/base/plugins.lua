@@ -49,6 +49,19 @@ local tokyonight = {
     priority = 1000,
 }
 
+local lsp = {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+}
+
+local completion = {
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+}
+
 local plugins = {
     telescope,
     harpoon,
@@ -59,6 +72,9 @@ local plugins = {
     'lewis6991/gitsigns.nvim',
     tokyonight,
 }
+
+vim.list_extend(plugins, lsp)
+vim.list_extend(plugins, completion)
 
 lazy.setup(plugins)
 
