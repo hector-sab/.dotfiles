@@ -22,6 +22,10 @@ Used to setup my systems. Use `ansible.sh`.
 - For more on ftplugins, check `:h ftplugin-name` and `:h write-filetype-plugin` `:h ftplugin`
 - How to allow disabling the ftplugin, or being loaded more than once? check `DISABLING` on `:h ftplugin`
 - Cursor does not change of color when changing of theme in nvim, making it hard to find. Is there any way of changing the color of the cursor just within nvim?
+- Add auto completion
+- `mksession`?
+- `add_workspace_folder`?
+- how to use luasnips?
 
 # Loop back
 - Use ansible-vault for ssh keys. [Resource](https://www.shellhacks.com/ansible-sudo-a-password-is-required/).
