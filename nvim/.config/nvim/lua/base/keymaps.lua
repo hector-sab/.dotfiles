@@ -6,20 +6,32 @@ set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 
 -- Diagnostics
-set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+set(
+    'n', '[d', vim.diagnostic.goto_prev,
+    { desc = 'Go to previous diagnostic message' }
+)
+set(
+    'n', ']d', vim.diagnostic.goto_next,
+    { desc = 'Go to next diagnostic message' }
+)
+set(
+    'n', '<leader>e', vim.diagnostic.open_float,
+    { desc = 'Open floating diagnostic message' }
+)
+set(
+    'n', '<leader>q', vim.diagnostic.setloclist,
+    { desc = 'Open diagnostics list' }
+)
 
 
 -- Yank
 set(
-	{'n', 'x'}, '<leader>y', '"+y',
-	{desc = 'Yank selection to the OS clipboard'}
+    {'n', 'x'}, '<leader>y', '"+y',
+    {desc = 'Yank selection to the OS clipboard'}
 )
 set(
-	{'n', 'x'}, '<leader>Y', '"+y$',
-	{desc = 'Yank line (from position) to the OS clipboard'}
+    {'n', 'x'}, '<leader>Y', '"+y$',
+    {desc = 'Yank line (from position) to the OS clipboard'}
 )
 
 -- Paste
