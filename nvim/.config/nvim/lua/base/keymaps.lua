@@ -14,6 +14,8 @@ set(
     'n', ']d', vim.diagnostic.goto_next,
     { desc = 'Go to next diagnostic message' }
 )
+
+-- TODO: Not working
 set(
     'n', '<leader>e', vim.diagnostic.open_float,
     { desc = 'Open floating diagnostic message' }
