@@ -24,6 +24,7 @@
       - tree-sitter
       - tree-sitter-cli
       - jq
+      - wget
 
 # Ensures that tmux can work properly. Which should be version 6+
 
