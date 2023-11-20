@@ -6,3 +6,4 @@
   loop:
     - tmux
     - nvim
+    - zsh
