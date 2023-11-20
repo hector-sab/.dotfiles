@@ -4,6 +4,7 @@
   register: result
   changed_when: 'result.stderr is search("LINK: ")'
   loop:
+    - zsh
     - tmux
     - nvim
-    - zsh
+    - wezterm
