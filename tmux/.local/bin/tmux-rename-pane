@@ -2,11 +2,12 @@
 #
 # To execute this command, make sure to be inside a
 # tmux session.
-# $ ./tmux-rename-pane new-name
+# $ ./tmux-rename-pane new-name [pane_id]
 #
 # To remove the name execute the it without any
 # argument.
 # $ ./tmux-rename-pane
+# $ ./tmux-rename-pane "" 4
 
 if ! command -v tmux &> /dev/null
 then
@@ -14,4 +15,8 @@ then
     >&2 echo "tmux is not available"
     exit 1
 fi
-tmux set-option -p @custom_pane_title "$1"
+
+NEW_NAME="$1"
+PANE_ID="${2:-$(tmux display-message -p '#{pane_id}')}"
+
+tmux set-option -t "$PANE_ID" -p @custom_pane_title "$NEW_NAME"
