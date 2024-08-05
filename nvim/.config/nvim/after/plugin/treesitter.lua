@@ -6,7 +6,7 @@ end
 
 local configs = require('nvim-treesitter.configs')
 
-default_languages = {'c', 'cpp', 'go', 'lua', 'python', 'rust', 'javascript', 'vim', 'vimdoc'}
+local default_languages = {'c', 'cpp', 'go', 'lua', 'python', 'rust', 'javascript', 'vim', 'vimdoc'}
 
 configs.setup({
     ensure_installed = default_languages,

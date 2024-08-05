@@ -54,11 +54,7 @@ set(
     {desc = '[S]earch by [G]rep'}
 )
 
-set(
-    'n', '<leader>sd', builtin.diagnostics,
-    {desc = '[S]earch [D]iagnostics'}
-)
-
+-- NOTE: Set this up on the diagnostics
 set(
     'n', '<leader>sd', builtin.diagnostics,
     {desc = '[S]earch [D]iagnostics'}

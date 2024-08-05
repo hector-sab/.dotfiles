@@ -4,6 +4,16 @@ local set = vim.keymap.set
 set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Iterate over Quick fix lists
+set(
+    'n', '<C-j>', ':cnext<CR>',
+    {noremap = true, silent = true, desc = 'Next item on QuickFix list'}
+)
+set(
+    'n', '<C-k>', ':cprev<CR>',
+    {noremap = true, silent = true, desc = 'Previous item on QuickFix list'}
+)
+
 
 -- Diagnostics
 set(
@@ -15,11 +25,20 @@ set(
     { desc = 'Go to next diagnostic message' }
 )
 
--- TODO: Not working
-set(
-    'n', '<leader>e', vim.diagnostic.open_float,
-    { desc = 'Open floating diagnostic message' }
-)
+-- NOTE: telescope is not found at this stage
+local telescope_ok, telescope_btin = pcall(require, 'telescope.builtin')
+if telescope_ok then
+    set(
+        'n', '<leader>sd', telescope_btin.diagnostics,
+        { desc = '[S]how [D]iagnostics' }
+    )
+else
+    -- TODO: Not working
+    set(
+        'n', '<leader>sd', vim.diagnostic.open_float,
+        { desc = '[S]how [D]iagnostics' }
+    )
+end
 set(
     'n', '<leader>q', vim.diagnostic.setloclist,
     { desc = 'Open diagnostics list' }

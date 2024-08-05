@@ -50,12 +50,17 @@ local function setup_lua_nvim_config(client)
     return true
 end
 
+
+-- python
+
 -- Setups
 mason.setup({})
 mason_lsp.setup({
     ensure_installed = ensure_installed
 })
 lsp_conf.lua_ls.setup({ on_init = setup_lua_nvim_config })
+lsp_conf.pyright.setup({})
+lsp_conf.gopls.setup({})
 
 
 
@@ -70,13 +75,25 @@ local function keymaps_callback(ev)
 
     -- Buffer local mappings
     local opts = { buffer = ev.buf }
-    set('n', 'gd', buf.definition, opts)
+
     set('n', 'gD', buf.declaration, opts)
-    set('n', 'gr', buf.references, opts)
+    local telescope_ok, telescope_btin = pcall(require, 'telescope.builtin')
+    if telescope_ok then
+        set('n', 'gd', telescope_btin.lsp_definitions, { desc = '[G]oto [D]efinitions' })
+        set('n', 'gr', telescope_btin.lsp_references, { desc = '[G]oto [R]eferences' })
+        -- TODO: Fix telescope goto implementation
+        --set('n', 'gi', telescope_btin.lsp_implementation, { desc = '[G]oto [I]mplementation' })
+        set('n', 'gi', buf.implementation, opts, { desc = '[G]oto [I]mplementation'})
+        set('n' , '<leader>D', telescope_btin.lsp_type_definitions, { desc = 'Type [D]efinition' })
+    else
+        set('n', 'gd', buf.definition, opts, { desc = '[G]oto [D]efinitions'})
+        set('n', 'gr', buf.references, opts, { desc = '[G]oto [R]eferences'})
+        set('n', 'gi', buf.implementation, opts, { desc = '[G]oto [I]mplementation'})
+    end
+
     -- NOTE: There's some messages when using K already...
     --   Where do they come from?
     set('n', 'K', buf.hover, opts)
-    set('n', 'gi', buf.implementation, opts)
     set('n', '<C-k', buf.signature_help, opts)
     -- TODO: How can I use the workspaces?
     -- set('n', '<space>wa', buf.add_workspace_folder, opts)
