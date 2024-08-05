@@ -1,0 +1,9 @@
+# ISSUE: it may get the remote branches and it will create
+#   the directory under "remote"
+branch=$(git branch -a| awk '{print $1}' | fzf)
+git_bare_dir=$(git rev-parse --git-common-dir)
+
+target_path=$git_bare_dir/my-branches/$branch
+mkdir -p $target_path
+
+git worktree add $target_path $branch

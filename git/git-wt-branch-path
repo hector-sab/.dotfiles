@@ -1,0 +1,28 @@
+data=$(git worktree list)
+
+paths=()
+branches=()
+
+# Process each line of the data
+while IFS= read -r line; do
+    # Extract the path and branch
+    path=$(echo "$line" | awk '{print $1}')
+    branch=$(echo "$line" | awk '{print $3}' | sed 's/\[//;s/\]//')
+
+    # Add to arrays
+    paths+=("$path")
+    branches+=("$branch")
+done <<< "$data"
+
+# Use fzf to select a branch
+selected_branch=$(printf "%s\n" "${branches[@]}" | fzf --prompt="Select a branch: ")
+
+# Find the corresponding path
+for i in "${!branches[@]}"; do
+    if [[ "${branches[$i]}" == "$selected_branch" ]]; then
+        selected_path="${paths[$i]}"
+        break
+    fi
+done
+
+echo $selected_path

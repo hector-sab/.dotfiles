@@ -1,0 +1,10 @@
+current_timestamp=$(date +%s)
+git_bare_dir=$(git rev-parse --git-common-dir)
+
+branch=$(git branch --show-current)
+new_branch=backup/$branch/$current_timestamp
+
+target_path=$git_bare_dir/my-branches/$new_branch
+mkdir -p $target_path
+
+git worktree add -b $new_branch $target_path $branch

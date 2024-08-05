@@ -12,6 +12,8 @@ end
 
 local ensure_installed = {
     'lua_ls',
+    'gopls',
+    'pyright',
 }
 
 -- Custom configs

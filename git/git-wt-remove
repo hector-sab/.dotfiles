@@ -1,0 +1,15 @@
+data=$(git worktree list)
+
+paths=()
+branches=()
+
+# Process each line of the data
+while IFS= read -r line; do
+    # Extract the path and branch
+    path=$(echo "$line" | awk '{print $1}')
+    branch=$(echo "$line" | awk '{print $3}' | sed 's/\[//;s/\]//')
+
+    # Add to arrays
+    paths+=("$path")
+    branches+=("$branch")
+done <<< "$data"

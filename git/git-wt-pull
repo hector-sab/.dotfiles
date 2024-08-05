@@ -1,0 +1,7 @@
+#To pull all changes on all branches in a bare Git repository, you can use the git fetch command. Since a bare repository doesn’t have a working tree, you can’t use git pull directly. Instead, you can fetch all branches from the remote repository. Here’s how you can do it.
+# This command fetches all branches from the remote repository (origin) and updates the corresponding branches in your bare repository
+git fetch origin +refs/heads/*:refs/heads/*
+
+
+# If you need to prune deleted branches, you can add the --prune option:
+#git fetch origin +refs/heads/*:refs/heads/* --prune
